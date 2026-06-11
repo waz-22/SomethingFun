@@ -312,7 +312,7 @@
         <div class="quick-select">
             <button class="quick-btn" onclick="addQuickTimezone('America/New_York')">🗽 New York</button>
             <button class="quick-btn" onclick="addQuickTimezone('Europe/London')">🇬🇧 London</button>
-            <button class="quick-btn" onclick="addQuickTimezone('Asia/Tokyo')">🇯🇵 Tokyo</button>
+            <button class="quick-btn" onclick="addQuickTimezone('Asia/Shanghai')">🇨🇳 China (Beijing)</button>
             <button class="quick-btn" onclick="addQuickTimezone('Australia/Sydney')">🇦🇺 Sydney</button>
             <button class="quick-btn" onclick="addQuickTimezone('Asia/Dubai')">🇦🇪 Dubai</button>
         </div>
@@ -373,7 +373,6 @@
             { name: 'Bissau', country: 'Guinea-Bissau', tz: 'Africa/Bissau', flag: '🇬🇼' },
             { name: 'Abidjan', country: 'Ivory Coast', tz: 'Africa/Abidjan', flag: '🇨🇮' },
             { name: 'Lome', country: 'Togo', tz: 'Africa/Lome', flag: '🇹🇬' },
-            { name: 'Accra', country: 'Ghana', tz: 'Africa/Accra', flag: '🇬🇭' },
             { name: 'Cotonou', country: 'Benin', tz: 'Africa/Porto-Novo', flag: '🇧🇯' },
             { name: 'Mauritius', country: 'Mauritius', tz: 'Indian/Mauritius', flag: '🇲🇺' },
             { name: 'Seychelles', country: 'Seychelles', tz: 'Indian/Mahe', flag: '🇸🇨' },
@@ -418,20 +417,29 @@
             { name: 'Makassar', country: 'Indonesia', tz: 'Asia/Makassar', flag: '🇮🇩' },
             { name: 'Jayapura', country: 'Indonesia', tz: 'Asia/Jayapura', flag: '🇮🇩' },
             { name: 'Taipei', country: 'Taiwan', tz: 'Asia/Taipei', flag: '🇹🇼' },
-            { name: 'Hong Kong', country: 'Hong Kong', tz: 'Asia/Hong_Kong', flag: '🇭🇰' },
-            { name: 'Macau', country: 'Macau', tz: 'Asia/Macau', flag: '🇲🇴' },
+            { name: 'Hong Kong', country: 'China (Hong Kong)', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Macau', country: 'China (Macau)', tz: 'Asia/Shanghai', flag: '🇨🇳' },
             { name: 'Shanghai', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
             { name: 'Beijing', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
             { name: 'Chongqing', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Guangzhou', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Shenzhen', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Chengdu', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Wuhan', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Xi\'an', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Hangzhou', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Nanjing', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Tianjin', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Harbin', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Shenyang', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Urumqi', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Lhasa', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
             { name: 'Tokyo', country: 'Japan', tz: 'Asia/Tokyo', flag: '🇯🇵' },
             { name: 'Osaka', country: 'Japan', tz: 'Asia/Tokyo', flag: '🇯🇵' },
             { name: 'Seoul', country: 'South Korea', tz: 'Asia/Seoul', flag: '🇰🇷' },
             { name: 'Busan', country: 'South Korea', tz: 'Asia/Seoul', flag: '🇰🇷' },
             { name: 'Pyongyang', country: 'North Korea', tz: 'Asia/Pyongyang', flag: '🇰🇵' },
-            { name: 'Mongolia', country: 'Mongolia', tz: 'Asia/Ulaanbaatar', flag: '🇲🇳' },
-            { name: 'Shanghai', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
-            { name: 'Urumqi', country: 'China', tz: 'Asia/Urumqi', flag: '🇨🇳' },
-            { name: 'Lhasa', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Ulaanbaatar', country: 'Mongolia', tz: 'Asia/Ulaanbaatar', flag: '🇲🇳' },
             { name: 'Almaty', country: 'Kazakhstan', tz: 'Asia/Almaty', flag: '🇰🇿' },
             { name: 'Astana', country: 'Kazakhstan', tz: 'Asia/Almaty', flag: '🇰🇿' },
             { name: 'Tashkent', country: 'Uzbekistan', tz: 'Asia/Tashkent', flag: '🇺🇿' },
@@ -575,7 +583,7 @@
             { name: 'Sydney', country: 'Australia', tz: 'Australia/Sydney', flag: '🇦🇺' },
             { name: 'Melbourne', country: 'Australia', tz: 'Australia/Melbourne', flag: '🇦🇺' },
             { name: 'Brisbane', country: 'Australia', tz: 'Australia/Brisbane', flag: '🇦🇺' },
-            { name: 'Perth', country: 'Australia', tz: 'Australia/Perth', flag: '🇦🇺' },
+            { name: 'Perth', country: 'Australia', tz: 'Australia/Perth', flag: '🇦��' },
             { name: 'Adelaide', country: 'Australia', tz: 'Australia/Adelaide', flag: '🇦🇺' },
             { name: 'Hobart', country: 'Australia', tz: 'Australia/Hobart', flag: '🇦🇺' },
             { name: 'Darwin', country: 'Australia', tz: 'Australia/Darwin', flag: '🇦🇺' },
@@ -606,7 +614,7 @@
             const defaultTimezones = [
                 'America/New_York',
                 'Europe/London',
-                'Asia/Tokyo'
+                'Asia/Shanghai'
             ];
 
             activeTimezones = defaultTimezones;
