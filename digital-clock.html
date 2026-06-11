@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital World Clock</title>
+    <title>Digital World Clock - All Countries</title>
     <style>
         * {
             margin: 0;
@@ -26,14 +26,14 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 40px;
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
         }
 
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             font-size: 2.5em;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -41,10 +41,41 @@
             background-clip: text;
         }
 
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
         .clocks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
             margin-bottom: 30px;
         }
 
@@ -75,44 +106,57 @@
         }
 
         .timezone-label {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .timezone-name {
-            font-size: 1.3em;
+            font-size: 1.25em;
             color: #333;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            word-break: break-word;
+        }
+
+        .country-name {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
         }
 
         .digital-display {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: bold;
             color: #333;
             font-family: 'Courier New', monospace;
             letter-spacing: 2px;
-            margin: 20px 0;
+            margin: 15px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .time-format {
-            font-size: 1.1em;
+            font-size: 0.95em;
             color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
         .date-display {
-            font-size: 0.95em;
+            font-size: 0.9em;
             color: #777;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 12px;
+            padding-top: 12px;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .timezone-offset {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 8px;
         }
 
         .controls {
@@ -120,13 +164,18 @@
             margin-top: 30px;
             padding-top: 30px;
             border-top: 2px solid #eee;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .controls label {
-            margin-right: 20px;
             font-size: 1em;
             color: #333;
             font-weight: 500;
+            display: flex;
+            align-items: center;
         }
 
         .controls select {
@@ -138,6 +187,7 @@
             background: white;
             cursor: pointer;
             transition: all 0.3s ease;
+            min-width: 200px;
         }
 
         .controls select:hover {
@@ -145,60 +195,19 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .timezone-offset {
-            font-size: 0.9em;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 1.8em;
-                margin-bottom: 30px;
-            }
-
-            .clocks-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .digital-display {
-                font-size: 2.2em;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .controls label {
-                display: block;
-                margin: 10px 0 10px 0;
-            }
-
-            .controls select {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-
-        .add-timezone-btn {
+        .btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 8px;
             font-size: 1em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-left: 10px;
         }
 
-        .add-timezone-btn:hover {
+        .btn:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
@@ -229,12 +238,85 @@
             background: rgba(255, 0, 0, 1);
             transform: scale(1.1);
         }
+
+        .quick-select {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .quick-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .stats {
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .clocks-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .digital-display {
+                font-size: 1.8em;
+            }
+
+            .controls select {
+                min-width: 150px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🌍 Digital World Clock</h1>
+        <p class="subtitle">All Countries & Time Zones</p>
         
+        <div class="search-section">
+            <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search country, city, or timezone...">
+            <button class="btn" onclick="clearAllClocks()">Clear All</button>
+        </div>
+
+        <div class="stats">
+            <span>Total Clocks: <strong id="clockCount">3</strong></span> | 
+            <span>Timezones Available: <strong id="tzCount">195</strong></span>
+        </div>
+
+        <div class="quick-select">
+            <button class="quick-btn" onclick="addQuickTimezone('America/New_York')">🗽 New York</button>
+            <button class="quick-btn" onclick="addQuickTimezone('Europe/London')">🇬🇧 London</button>
+            <button class="quick-btn" onclick="addQuickTimezone('Asia/Tokyo')">🇯🇵 Tokyo</button>
+            <button class="quick-btn" onclick="addQuickTimezone('Australia/Sydney')">🇦🇺 Sydney</button>
+            <button class="quick-btn" onclick="addQuickTimezone('Asia/Dubai')">🇦🇪 Dubai</button>
+        </div>
+
         <div class="clocks-grid" id="clocksGrid">
             <!-- Clock cards will be dynamically added here -->
         </div>
@@ -244,36 +326,280 @@
             <select id="timezoneSelect">
                 <option value="">Select a timezone...</option>
             </select>
-            <button class="add-timezone-btn" onclick="addTimezone()">Add Clock</button>
+            <button class="btn" onclick="addTimezone()">Add Clock</button>
         </div>
     </div>
 
     <script>
-        // List of common timezones
+        // Comprehensive list of all world timezones with countries
         const timezones = [
-            { name: 'New York', tz: 'America/New_York', flag: '🗽' },
-            { name: 'London', tz: 'Europe/London', flag: '🇬🇧' },
-            { name: 'Paris', tz: 'Europe/Paris', flag: '🇫🇷' },
-            { name: 'Tokyo', tz: 'Asia/Tokyo', flag: '🇯🇵' },
-            { name: 'Sydney', tz: 'Australia/Sydney', flag: '🇦🇺' },
-            { name: 'Dubai', tz: 'Asia/Dubai', flag: '🇦🇪' },
-            { name: 'Singapore', tz: 'Asia/Singapore', flag: '🇸🇬' },
-            { name: 'Hong Kong', tz: 'Asia/Hong_Kong', flag: '🇭🇰' },
-            { name: 'Mumbai', tz: 'Asia/Kolkata', flag: '🇮🇳' },
-            { name: 'Bangkok', tz: 'Asia/Bangkok', flag: '🇹🇭' },
-            { name: 'Istanbul', tz: 'Europe/Istanbul', flag: '🇹🇷' },
-            { name: 'Moscow', tz: 'Europe/Moscow', flag: '🇷🇺' },
-            { name: 'São Paulo', tz: 'America/Sao_Paulo', flag: '🇧🇷' },
-            { name: 'Mexico City', tz: 'America/Mexico_City', flag: '🇲🇽' },
-            { name: 'Los Angeles', tz: 'America/Los_Angeles', flag: '🇺🇸' },
-            { name: 'Chicago', tz: 'America/Chicago', flag: '🇺🇸' },
-            { name: 'Toronto', tz: 'America/Toronto', flag: '🇨🇦' },
-            { name: 'Vancouver', tz: 'America/Vancouver', flag: '🇨🇦' },
-            { name: 'Auckland', tz: 'Pacific/Auckland', flag: '🇳🇿' },
-            { name: 'Bangkok', tz: 'Asia/Bangkok', flag: '🇹🇭' },
+            // Africa
+            { name: 'Cairo', country: 'Egypt', tz: 'Africa/Cairo', flag: '🇪🇬' },
+            { name: 'Johannesburg', country: 'South Africa', tz: 'Africa/Johannesburg', flag: '🇿🇦' },
+            { name: 'Lagos', country: 'Nigeria', tz: 'Africa/Lagos', flag: '🇳🇬' },
+            { name: 'Accra', country: 'Ghana', tz: 'Africa/Accra', flag: '🇬🇭' },
+            { name: 'Nairobi', country: 'Kenya', tz: 'Africa/Nairobi', flag: '🇰🇪' },
+            { name: 'Casablanca', country: 'Morocco', tz: 'Africa/Casablanca', flag: '🇲🇦' },
+            { name: 'Algiers', country: 'Algeria', tz: 'Africa/Algiers', flag: '🇩🇿' },
+            { name: 'Tunis', country: 'Tunisia', tz: 'Africa/Tunis', flag: '🇹🇳' },
+            { name: 'Tripoli', country: 'Libya', tz: 'Africa/Tripoli', flag: '🇱🇾' },
+            { name: 'Khartoum', country: 'Sudan', tz: 'Africa/Khartoum', flag: '🇸🇩' },
+            { name: 'Addis Ababa', country: 'Ethiopia', tz: 'Africa/Addis_Ababa', flag: '🇪🇹' },
+            { name: 'Mogadishu', country: 'Somalia', tz: 'Africa/Mogadishu', flag: '🇸🇴' },
+            { name: 'Kampala', country: 'Uganda', tz: 'Africa/Kampala', flag: '🇺🇬' },
+            { name: 'Kigali', country: 'Rwanda', tz: 'Africa/Kigali', flag: '🇷🇼' },
+            { name: 'Dar es Salaam', country: 'Tanzania', tz: 'Africa/Dar_es_Salaam', flag: '🇹🇿' },
+            { name: 'Lusaka', country: 'Zambia', tz: 'Africa/Lusaka', flag: '🇿🇲' },
+            { name: 'Harare', country: 'Zimbabwe', tz: 'Africa/Harare', flag: '🇿🇼' },
+            { name: 'Maputo', country: 'Mozambique', tz: 'Africa/Maputo', flag: '🇲🇿' },
+            { name: 'Blantyre', country: 'Malawi', tz: 'Africa/Blantyre', flag: '🇲🇼' },
+            { name: 'Gaborone', country: 'Botswana', tz: 'Africa/Gaborone', flag: '🇧🇼' },
+            { name: 'Windhoek', country: 'Namibia', tz: 'Africa/Windhoek', flag: '🇳🇦' },
+            { name: 'Luanda', country: 'Angola', tz: 'Africa/Luanda', flag: '🇦🇴' },
+            { name: 'Kinshasa', country: 'DR Congo', tz: 'Africa/Kinshasa', flag: '🇨🇩' },
+            { name: 'Brazzaville', country: 'Congo', tz: 'Africa/Brazzaville', flag: '🇨🇬' },
+            { name: 'Douala', country: 'Cameroon', tz: 'Africa/Douala', flag: '🇨🇲' },
+            { name: 'Libreville', country: 'Gabon', tz: 'Africa/Libreville', flag: '🇬🇦' },
+            { name: 'Malabo', country: 'Equatorial Guinea', tz: 'Africa/Malabo', flag: '🇬🇶' },
+            { name: 'Bangui', country: 'Central African Republic', tz: 'Africa/Bangui', flag: '🇨🇫' },
+            { name: 'Ndjamena', country: 'Chad', tz: 'Africa/Ndjamena', flag: '🇹🇩' },
+            { name: 'Niamey', country: 'Niger', tz: 'Africa/Niamey', flag: '🇳🇪' },
+            { name: 'Bamako', country: 'Mali', tz: 'Africa/Bamako', flag: '🇲🇱' },
+            { name: 'Ouagadougou', country: 'Burkina Faso', tz: 'Africa/Ouagadougou', flag: '🇧🇫' },
+            { name: 'Dakar', country: 'Senegal', tz: 'Africa/Dakar', flag: '🇸🇳' },
+            { name: 'Freetown', country: 'Sierra Leone', tz: 'Africa/Freetown', flag: '🇸🇱' },
+            { name: 'Monrovia', country: 'Liberia', tz: 'Africa/Monrovia', flag: '🇱🇷' },
+            { name: 'Conakry', country: 'Guinea', tz: 'Africa/Conakry', flag: '🇬🇳' },
+            { name: 'Bissau', country: 'Guinea-Bissau', tz: 'Africa/Bissau', flag: '🇬🇼' },
+            { name: 'Abidjan', country: 'Ivory Coast', tz: 'Africa/Abidjan', flag: '🇨🇮' },
+            { name: 'Lome', country: 'Togo', tz: 'Africa/Lome', flag: '🇹🇬' },
+            { name: 'Accra', country: 'Ghana', tz: 'Africa/Accra', flag: '🇬🇭' },
+            { name: 'Cotonou', country: 'Benin', tz: 'Africa/Porto-Novo', flag: '🇧🇯' },
+            { name: 'Mauritius', country: 'Mauritius', tz: 'Indian/Mauritius', flag: '🇲🇺' },
+            { name: 'Seychelles', country: 'Seychelles', tz: 'Indian/Mahe', flag: '🇸🇨' },
+            { name: 'Comoros', country: 'Comoros', tz: 'Indian/Comoro', flag: '🇰🇲' },
+            { name: 'Reunion', country: 'Reunion', tz: 'Indian/Reunion', flag: '🇷🇪' },
+
+            // Asia - Middle East
+            { name: 'Dubai', country: 'UAE', tz: 'Asia/Dubai', flag: '🇦🇪' },
+            { name: 'Abu Dhabi', country: 'UAE', tz: 'Asia/Dubai', flag: '🇦🇪' },
+            { name: 'Doha', country: 'Qatar', tz: 'Asia/Qatar', flag: '🇶🇦' },
+            { name: 'Riyadh', country: 'Saudi Arabia', tz: 'Asia/Riyadh', flag: '🇸🇦' },
+            { name: 'Kuwait', country: 'Kuwait', tz: 'Asia/Kuwait', flag: '🇰🇼' },
+            { name: 'Bahrain', country: 'Bahrain', tz: 'Asia/Bahrain', flag: '🇧🇭' },
+            { name: 'Muscat', country: 'Oman', tz: 'Asia/Muscat', flag: '🇴🇲' },
+            { name: 'Sana\'a', country: 'Yemen', tz: 'Asia/Aden', flag: '🇾🇪' },
+            { name: 'Baghdad', country: 'Iraq', tz: 'Asia/Baghdad', flag: '🇮🇶' },
+            { name: 'Tehran', country: 'Iran', tz: 'Asia/Tehran', flag: '🇮🇷' },
+            { name: 'Kabul', country: 'Afghanistan', tz: 'Asia/Kabul', flag: '🇦🇫' },
+            { name: 'Islamabad', country: 'Pakistan', tz: 'Asia/Karachi', flag: '🇵🇰' },
+            { name: 'Karachi', country: 'Pakistan', tz: 'Asia/Karachi', flag: '🇵🇰' },
+            { name: 'Lahore', country: 'Pakistan', tz: 'Asia/Karachi', flag: '🇵🇰' },
+            { name: 'Delhi', country: 'India', tz: 'Asia/Kolkata', flag: '🇮🇳' },
+            { name: 'Mumbai', country: 'India', tz: 'Asia/Kolkata', flag: '🇮🇳' },
+            { name: 'Bangalore', country: 'India', tz: 'Asia/Kolkata', flag: '🇮🇳' },
+            { name: 'Kolkata', country: 'India', tz: 'Asia/Kolkata', flag: '🇮🇳' },
+            { name: 'Kathmandu', country: 'Nepal', tz: 'Asia/Kathmandu', flag: '🇳🇵' },
+            { name: 'Dhaka', country: 'Bangladesh', tz: 'Asia/Dhaka', flag: '🇧🇩' },
+            { name: 'Chittagong', country: 'Bangladesh', tz: 'Asia/Dhaka', flag: '🇧🇩' },
+            { name: 'Colombo', country: 'Sri Lanka', tz: 'Asia/Colombo', flag: '🇱🇰' },
+            { name: 'Male', country: 'Maldives', tz: 'Indian/Maldives', flag: '🇲🇻' },
+            { name: 'Bangkok', country: 'Thailand', tz: 'Asia/Bangkok', flag: '🇹🇭' },
+            { name: 'Vientiane', country: 'Laos', tz: 'Asia/Vientiane', flag: '🇱🇦' },
+            { name: 'Phnom Penh', country: 'Cambodia', tz: 'Asia/Phnom_Penh', flag: '🇰🇭' },
+            { name: 'Ho Chi Minh', country: 'Vietnam', tz: 'Asia/Ho_Chi_Minh', flag: '🇻🇳' },
+            { name: 'Hanoi', country: 'Vietnam', tz: 'Asia/Ho_Chi_Minh', flag: '🇻🇳' },
+            { name: 'Singapore', country: 'Singapore', tz: 'Asia/Singapore', flag: '🇸🇬' },
+            { name: 'Kuala Lumpur', country: 'Malaysia', tz: 'Asia/Kuala_Lumpur', flag: '🇲🇾' },
+            { name: 'Brunei', country: 'Brunei', tz: 'Asia/Brunei', flag: '🇧🇳' },
+            { name: 'Manila', country: 'Philippines', tz: 'Asia/Manila', flag: '🇵🇭' },
+            { name: 'Jakarta', country: 'Indonesia', tz: 'Asia/Jakarta', flag: '🇮🇩' },
+            { name: 'Surabaya', country: 'Indonesia', tz: 'Asia/Jakarta', flag: '🇮🇩' },
+            { name: 'Makassar', country: 'Indonesia', tz: 'Asia/Makassar', flag: '🇮🇩' },
+            { name: 'Jayapura', country: 'Indonesia', tz: 'Asia/Jayapura', flag: '🇮🇩' },
+            { name: 'Taipei', country: 'Taiwan', tz: 'Asia/Taipei', flag: '🇹🇼' },
+            { name: 'Hong Kong', country: 'Hong Kong', tz: 'Asia/Hong_Kong', flag: '🇭🇰' },
+            { name: 'Macau', country: 'Macau', tz: 'Asia/Macau', flag: '🇲🇴' },
+            { name: 'Shanghai', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Beijing', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Chongqing', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Tokyo', country: 'Japan', tz: 'Asia/Tokyo', flag: '🇯🇵' },
+            { name: 'Osaka', country: 'Japan', tz: 'Asia/Tokyo', flag: '🇯🇵' },
+            { name: 'Seoul', country: 'South Korea', tz: 'Asia/Seoul', flag: '🇰🇷' },
+            { name: 'Busan', country: 'South Korea', tz: 'Asia/Seoul', flag: '🇰🇷' },
+            { name: 'Pyongyang', country: 'North Korea', tz: 'Asia/Pyongyang', flag: '🇰🇵' },
+            { name: 'Mongolia', country: 'Mongolia', tz: 'Asia/Ulaanbaatar', flag: '🇲🇳' },
+            { name: 'Shanghai', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Urumqi', country: 'China', tz: 'Asia/Urumqi', flag: '🇨🇳' },
+            { name: 'Lhasa', country: 'China', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+            { name: 'Almaty', country: 'Kazakhstan', tz: 'Asia/Almaty', flag: '🇰🇿' },
+            { name: 'Astana', country: 'Kazakhstan', tz: 'Asia/Almaty', flag: '🇰🇿' },
+            { name: 'Tashkent', country: 'Uzbekistan', tz: 'Asia/Tashkent', flag: '🇺🇿' },
+            { name: 'Ashgabat', country: 'Turkmenistan', tz: 'Asia/Ashgabat', flag: '🇹🇲' },
+            { name: 'Dushanbe', country: 'Tajikistan', tz: 'Asia/Dushanbe', flag: '🇹🇯' },
+            { name: 'Bishkek', country: 'Kyrgyzstan', tz: 'Asia/Bishkek', flag: '🇰🇬' },
+            { name: 'Baku', country: 'Azerbaijan', tz: 'Asia/Baku', flag: '🇦🇿' },
+            { name: 'Tbilisi', country: 'Georgia', tz: 'Asia/Tbilisi', flag: '🇬🇪' },
+            { name: 'Yerevan', country: 'Armenia', tz: 'Asia/Yerevan', flag: '🇦🇲' },
+            { name: 'Istanbul', country: 'Turkey', tz: 'Europe/Istanbul', flag: '🇹🇷' },
+            { name: 'Ankara', country: 'Turkey', tz: 'Europe/Istanbul', flag: '🇹🇷' },
+            { name: 'Beirut', country: 'Lebanon', tz: 'Asia/Beirut', flag: '🇱🇧' },
+            { name: 'Damascus', country: 'Syria', tz: 'Asia/Damascus', flag: '🇸🇾' },
+            { name: 'Amman', country: 'Jordan', tz: 'Asia/Amman', flag: '🇯🇴' },
+            { name: 'Jerusalem', country: 'Israel', tz: 'Asia/Jerusalem', flag: '🇮🇱' },
+            { name: 'Tel Aviv', country: 'Israel', tz: 'Asia/Jerusalem', flag: '🇮🇱' },
+            { name: 'Ramallah', country: 'Palestine', tz: 'Asia/Hebron', flag: '🇵🇸' },
+
+            // Europe
+            { name: 'London', country: 'United Kingdom', tz: 'Europe/London', flag: '🇬🇧' },
+            { name: 'Manchester', country: 'United Kingdom', tz: 'Europe/London', flag: '🇬🇧' },
+            { name: 'Edinburgh', country: 'United Kingdom', tz: 'Europe/London', flag: '🇬🇧' },
+            { name: 'Dublin', country: 'Ireland', tz: 'Europe/Dublin', flag: '🇮🇪' },
+            { name: 'Cork', country: 'Ireland', tz: 'Europe/Dublin', flag: '🇮🇪' },
+            { name: 'Lisbon', country: 'Portugal', tz: 'Europe/Lisbon', flag: '🇵🇹' },
+            { name: 'Porto', country: 'Portugal', tz: 'Europe/Lisbon', flag: '🇵🇹' },
+            { name: 'Madrid', country: 'Spain', tz: 'Europe/Madrid', flag: '🇪🇸' },
+            { name: 'Barcelona', country: 'Spain', tz: 'Europe/Madrid', flag: '🇪🇸' },
+            { name: 'Seville', country: 'Spain', tz: 'Europe/Madrid', flag: '🇪🇸' },
+            { name: 'Paris', country: 'France', tz: 'Europe/Paris', flag: '🇫🇷' },
+            { name: 'Lyon', country: 'France', tz: 'Europe/Paris', flag: '🇫🇷' },
+            { name: 'Marseille', country: 'France', tz: 'Europe/Paris', flag: '🇫🇷' },
+            { name: 'Brussels', country: 'Belgium', tz: 'Europe/Brussels', flag: '🇧🇪' },
+            { name: 'Antwerp', country: 'Belgium', tz: 'Europe/Brussels', flag: '🇧🇪' },
+            { name: 'Amsterdam', country: 'Netherlands', tz: 'Europe/Amsterdam', flag: '🇳🇱' },
+            { name: 'Rotterdam', country: 'Netherlands', tz: 'Europe/Amsterdam', flag: '🇳🇱' },
+            { name: 'Berlin', country: 'Germany', tz: 'Europe/Berlin', flag: '🇩🇪' },
+            { name: 'Munich', country: 'Germany', tz: 'Europe/Berlin', flag: '🇩🇪' },
+            { name: 'Hamburg', country: 'Germany', tz: 'Europe/Berlin', flag: '🇩🇪' },
+            { name: 'Cologne', country: 'Germany', tz: 'Europe/Berlin', flag: '🇩🇪' },
+            { name: 'Warsaw', country: 'Poland', tz: 'Europe/Warsaw', flag: '🇵🇱' },
+            { name: 'Krakow', country: 'Poland', tz: 'Europe/Warsaw', flag: '🇵🇱' },
+            { name: 'Prague', country: 'Czech Republic', tz: 'Europe/Prague', flag: '🇨🇿' },
+            { name: 'Brno', country: 'Czech Republic', tz: 'Europe/Prague', flag: '🇨🇿' },
+            { name: 'Bratislava', country: 'Slovakia', tz: 'Europe/Bratislava', flag: '🇸🇰' },
+            { name: 'Budapest', country: 'Hungary', tz: 'Europe/Budapest', flag: '🇭🇺' },
+            { name: 'Vienna', country: 'Austria', tz: 'Europe/Vienna', flag: '🇦🇹' },
+            { name: 'Salzburg', country: 'Austria', tz: 'Europe/Vienna', flag: '🇦🇹' },
+            { name: 'Zurich', country: 'Switzerland', tz: 'Europe/Zurich', flag: '🇨🇭' },
+            { name: 'Bern', country: 'Switzerland', tz: 'Europe/Zurich', flag: '🇨🇭' },
+            { name: 'Geneva', country: 'Switzerland', tz: 'Europe/Zurich', flag: '🇨🇭' },
+            { name: 'Milan', country: 'Italy', tz: 'Europe/Rome', flag: '🇮🇹' },
+            { name: 'Rome', country: 'Italy', tz: 'Europe/Rome', flag: '🇮🇹' },
+            { name: 'Venice', country: 'Italy', tz: 'Europe/Rome', flag: '🇮🇹' },
+            { name: 'Naples', country: 'Italy', tz: 'Europe/Rome', flag: '🇮🇹' },
+            { name: 'Vatican City', country: 'Vatican', tz: 'Europe/Rome', flag: '🇻🇦' },
+            { name: 'San Marino', country: 'San Marino', tz: 'Europe/Rome', flag: '🇸🇲' },
+            { name: 'Ljubljana', country: 'Slovenia', tz: 'Europe/Ljubljana', flag: '🇸🇮' },
+            { name: 'Zagreb', country: 'Croatia', tz: 'Europe/Zagreb', flag: '🇭🇷' },
+            { name: 'Split', country: 'Croatia', tz: 'Europe/Zagreb', flag: '🇭🇷' },
+            { name: 'Sarajevo', country: 'Bosnia and Herzegovina', tz: 'Europe/Sarajevo', flag: '🇧🇦' },
+            { name: 'Belgrade', country: 'Serbia', tz: 'Europe/Belgrade', flag: '🇷🇸' },
+            { name: 'Sofia', country: 'Bulgaria', tz: 'Europe/Sofia', flag: '🇧🇬' },
+            { name: 'Bucharest', country: 'Romania', tz: 'Europe/Bucharest', flag: '🇷🇴' },
+            { name: 'Chisinau', country: 'Moldova', tz: 'Europe/Chisinau', flag: '🇲🇩' },
+            { name: 'Kiev', country: 'Ukraine', tz: 'Europe/Kiev', flag: '🇺🇦' },
+            { name: 'Odessa', country: 'Ukraine', tz: 'Europe/Kiev', flag: '🇺🇦' },
+            { name: 'Minsk', country: 'Belarus', tz: 'Europe/Minsk', flag: '🇧🇾' },
+            { name: 'Moscow', country: 'Russia', tz: 'Europe/Moscow', flag: '🇷🇺' },
+            { name: 'St Petersburg', country: 'Russia', tz: 'Europe/Moscow', flag: '🇷🇺' },
+            { name: 'Yekaterinburg', country: 'Russia', tz: 'Asia/Yekaterinburg', flag: '🇷🇺' },
+            { name: 'Novosibirsk', country: 'Russia', tz: 'Asia/Novosibirsk', flag: '🇷🇺' },
+            { name: 'Vladivostok', country: 'Russia', tz: 'Asia/Vladivostok', flag: '🇷🇺' },
+            { name: 'Athens', country: 'Greece', tz: 'Europe/Athens', flag: '🇬🇷' },
+            { name: 'Thessaloniki', country: 'Greece', tz: 'Europe/Athens', flag: '🇬🇷' },
+            { name: 'Tallinn', country: 'Estonia', tz: 'Europe/Tallinn', flag: '🇪🇪' },
+            { name: 'Riga', country: 'Latvia', tz: 'Europe/Riga', flag: '🇱🇻' },
+            { name: 'Vilnius', country: 'Lithuania', tz: 'Europe/Vilnius', flag: '🇱🇹' },
+            { name: 'Reykjavik', country: 'Iceland', tz: 'Atlantic/Reykjavik', flag: '🇮🇸' },
+
+            // Americas - North America
+            { name: 'New York', country: 'USA', tz: 'America/New_York', flag: '🗽' },
+            { name: 'Boston', country: 'USA', tz: 'America/New_York', flag: '🗽' },
+            { name: 'Philadelphia', country: 'USA', tz: 'America/New_York', flag: '🗽' },
+            { name: 'Toronto', country: 'Canada', tz: 'America/Toronto', flag: '🇨🇦' },
+            { name: 'Montreal', country: 'Canada', tz: 'America/Toronto', flag: '🇨🇦' },
+            { name: 'Detroit', country: 'USA', tz: 'America/Detroit', flag: '🗽' },
+            { name: 'Chicago', country: 'USA', tz: 'America/Chicago', flag: '🗽' },
+            { name: 'Minneapolis', country: 'USA', tz: 'America/Chicago', flag: '🗽' },
+            { name: 'Denver', country: 'USA', tz: 'America/Denver', flag: '🗽' },
+            { name: 'Phoenix', country: 'USA', tz: 'America/Phoenix', flag: '🗽' },
+            { name: 'Los Angeles', country: 'USA', tz: 'America/Los_Angeles', flag: '🗽' },
+            { name: 'San Francisco', country: 'USA', tz: 'America/Los_Angeles', flag: '🗽' },
+            { name: 'Seattle', country: 'USA', tz: 'America/Los_Angeles', flag: '🗽' },
+            { name: 'Anchorage', country: 'USA', tz: 'America/Anchorage', flag: '🗽' },
+            { name: 'Honolulu', country: 'USA', tz: 'Pacific/Honolulu', flag: '🗽' },
+            { name: 'Vancouver', country: 'Canada', tz: 'America/Vancouver', flag: '🇨🇦' },
+            { name: 'Calgary', country: 'Canada', tz: 'America/Edmonton', flag: '🇨🇦' },
+            { name: 'Mexico City', country: 'Mexico', tz: 'America/Mexico_City', flag: '🇲🇽' },
+            { name: 'Guadalajara', country: 'Mexico', tz: 'America/Mexico_City', flag: '🇲🇽' },
+            { name: 'Monterrey', country: 'Mexico', tz: 'America/Mexico_City', flag: '🇲🇽' },
+
+            // Americas - Central America & Caribbean
+            { name: 'Guatemala City', country: 'Guatemala', tz: 'America/Guatemala', flag: '🇬🇹' },
+            { name: 'San Salvador', country: 'El Salvador', tz: 'America/El_Salvador', flag: '🇸🇻' },
+            { name: 'Tegucigalpa', country: 'Honduras', tz: 'America/Tegucigalpa', flag: '🇭🇳' },
+            { name: 'Managua', country: 'Nicaragua', tz: 'America/Managua', flag: '🇳🇮' },
+            { name: 'San Jose', country: 'Costa Rica', tz: 'America/Costa_Rica', flag: '🇨🇷' },
+            { name: 'Panama City', country: 'Panama', tz: 'America/Panama', flag: '🇵🇦' },
+            { name: 'Havana', country: 'Cuba', tz: 'America/Havana', flag: '🇨🇺' },
+            { name: 'Santo Domingo', country: 'Dominican Republic', tz: 'America/Santo_Domingo', flag: '🇩🇴' },
+            { name: 'San Juan', country: 'Puerto Rico', tz: 'America/Puerto_Rico', flag: '🇵🇷' },
+            { name: 'Kingston', country: 'Jamaica', tz: 'America/Jamaica', flag: '🇯🇲' },
+            { name: 'Port-au-Prince', country: 'Haiti', tz: 'America/Port-au-Prince', flag: '🇭🇹' },
+            { name: 'Nassau', country: 'Bahamas', tz: 'America/Nassau', flag: '🇧🇸' },
+            { name: 'Bridgetown', country: 'Barbados', tz: 'America/Barbados', flag: '🇧🇧' },
+            { name: 'St. Lucia', country: 'Saint Lucia', tz: 'America/St_Lucia', flag: '🇱🇨' },
+            { name: 'Port of Spain', country: 'Trinidad and Tobago', tz: 'America/Port_of_Spain', flag: '🇹🇹' },
+
+            // Americas - South America
+            { name: 'Caracas', country: 'Venezuela', tz: 'America/Caracas', flag: '🇻🇪' },
+            { name: 'Bogota', country: 'Colombia', tz: 'America/Bogota', flag: '🇨🇴' },
+            { name: 'Medellin', country: 'Colombia', tz: 'America/Bogota', flag: '🇨🇴' },
+            { name: 'Quito', country: 'Ecuador', tz: 'America/Guayaquil', flag: '🇪🇨' },
+            { name: 'Lima', country: 'Peru', tz: 'America/Lima', flag: '🇵🇪' },
+            { name: 'La Paz', country: 'Bolivia', tz: 'America/La_Paz', flag: '🇧🇴' },
+            { name: 'Sao Paulo', country: 'Brazil', tz: 'America/Sao_Paulo', flag: '🇧🇷' },
+            { name: 'Rio de Janeiro', country: 'Brazil', tz: 'America/Sao_Paulo', flag: '🇧🇷' },
+            { name: 'Salvador', country: 'Brazil', tz: 'America/Bahia', flag: '🇧🇷' },
+            { name: 'Manaus', country: 'Brazil', tz: 'America/Manaus', flag: '🇧🇷' },
+            { name: 'Brasilia', country: 'Brazil', tz: 'America/Sao_Paulo', flag: '🇧🇷' },
+            { name: 'Asuncion', country: 'Paraguay', tz: 'America/Asuncion', flag: '🇵🇾' },
+            { name: 'Buenos Aires', country: 'Argentina', tz: 'America/Argentina/Buenos_Aires', flag: '🇦🇷' },
+            { name: 'Mendoza', country: 'Argentina', tz: 'America/Argentina/Mendoza', flag: '🇦🇷' },
+            { name: 'Montevideo', country: 'Uruguay', tz: 'America/Montevideo', flag: '🇺🇾' },
+            { name: 'Santiago', country: 'Chile', tz: 'America/Santiago', flag: '🇨🇱' },
+            { name: 'Punta Arenas', country: 'Chile', tz: 'America/Punta_Arenas', flag: '🇨🇱' },
+            { name: 'Valparaiso', country: 'Chile', tz: 'America/Santiago', flag: '🇨🇱' },
+
+            // Oceania
+            { name: 'Sydney', country: 'Australia', tz: 'Australia/Sydney', flag: '🇦🇺' },
+            { name: 'Melbourne', country: 'Australia', tz: 'Australia/Melbourne', flag: '🇦🇺' },
+            { name: 'Brisbane', country: 'Australia', tz: 'Australia/Brisbane', flag: '🇦🇺' },
+            { name: 'Perth', country: 'Australia', tz: 'Australia/Perth', flag: '🇦🇺' },
+            { name: 'Adelaide', country: 'Australia', tz: 'Australia/Adelaide', flag: '🇦🇺' },
+            { name: 'Hobart', country: 'Australia', tz: 'Australia/Hobart', flag: '🇦🇺' },
+            { name: 'Darwin', country: 'Australia', tz: 'Australia/Darwin', flag: '🇦🇺' },
+            { name: 'Auckland', country: 'New Zealand', tz: 'Pacific/Auckland', flag: '🇳🇿' },
+            { name: 'Wellington', country: 'New Zealand', tz: 'Pacific/Auckland', flag: '🇳🇿' },
+            { name: 'Christchurch', country: 'New Zealand', tz: 'Pacific/Auckland', flag: '🇳🇿' },
+            { name: 'Fiji', country: 'Fiji', tz: 'Pacific/Fiji', flag: '🇫🇯' },
+            { name: 'Nadi', country: 'Fiji', tz: 'Pacific/Fiji', flag: '🇫🇯' },
+            { name: 'Samoa', country: 'Samoa', tz: 'Pacific/Apia', flag: '🇼🇸' },
+            { name: 'Tongatapu', country: 'Tonga', tz: 'Pacific/Tongatapu', flag: '🇹🇴' },
+            { name: 'Kiritimati', country: 'Kiribati', tz: 'Pacific/Kiritimati', flag: '🇰🇮' },
+            { name: 'Nauru', country: 'Nauru', tz: 'Pacific/Nauru', flag: '🇳🇷' },
+            { name: 'Palau', country: 'Palau', tz: 'Pacific/Palau', flag: '🇵🇼' },
+            { name: 'Guam', country: 'Guam', tz: 'Pacific/Guam', flag: '🇬🇺' },
+            { name: 'Saipan', country: 'Northern Mariana', tz: 'Pacific/Saipan', flag: '🇲🇵' },
+            { name: 'Port Moresby', country: 'Papua New Guinea', tz: 'Pacific/Port_Moresby', flag: '🇵🇬' },
+            { name: 'Solomon Islands', country: 'Solomon Islands', tz: 'Pacific/Guadalcanal', flag: '🇸🇧' },
+            { name: 'Vanuatu', country: 'Vanuatu', tz: 'Pacific/Efate', flag: '🇻🇺' },
+            { name: 'Noumea', country: 'New Caledonia', tz: 'Pacific/Noumea', flag: '🇳🇨' },
+            { name: 'Papeete', country: 'French Polynesia', tz: 'Pacific/Tahiti', flag: '🇵🇫' },
         ];
 
         let activeTimezones = [];
+        let filteredTimezones = [...timezones];
 
         // Initialize with default timezones
         function initializeClocks() {
@@ -288,6 +614,9 @@
             
             // Update clocks every second
             setInterval(updateClocks, 1000);
+            
+            // Update timezone count
+            document.getElementById('tzCount').textContent = timezones.length;
         }
 
         function updateClocks() {
@@ -324,6 +653,7 @@
                     <button class="remove-btn" onclick="removeTimezone('${tz}')">×</button>
                     <div class="timezone-label">Timezone</div>
                     <div class="timezone-name">${tzData ? tzData.flag + ' ' + tzData.name : tz}</div>
+                    ${tzData ? `<div class="country-name">${tzData.country}</div>` : ''}
                     <div class="digital-display">${hours}:${minutes}:${seconds}</div>
                     <div class="time-format">24-Hour Format</div>
                     <div class="timezone-offset">UTC ${offset}</div>
@@ -335,6 +665,9 @@
             while (grid.children.length > activeTimezones.length) {
                 grid.removeChild(grid.lastChild);
             }
+
+            // Update clock count
+            document.getElementById('clockCount').textContent = activeTimezones.length;
         }
 
         function getTimezoneOffset(tz) {
@@ -365,18 +698,83 @@
             updateClocks();
         }
 
+        function addQuickTimezone(tz) {
+            if (activeTimezones.includes(tz)) {
+                alert('This timezone is already displayed');
+                return;
+            }
+            activeTimezones.push(tz);
+            updateClocks();
+        }
+
         function removeTimezone(tz) {
             activeTimezones = activeTimezones.filter(t => t !== tz);
             updateClocks();
         }
 
+        function clearAllClocks() {
+            activeTimezones = [];
+            updateClocks();
+        }
+
+        function searchTimezones(query) {
+            const lowerQuery = query.toLowerCase();
+            filteredTimezones = timezones.filter(tz => 
+                tz.name.toLowerCase().includes(lowerQuery) ||
+                tz.country.toLowerCase().includes(lowerQuery) ||
+                tz.tz.toLowerCase().includes(lowerQuery)
+            );
+            updateTimezoneSelect();
+        }
+
         function populateTimezoneSelect() {
             const select = document.getElementById('timezoneSelect');
+            // Add all timezones grouped by region
+            const regions = {};
             timezones.forEach(tz => {
-                const option = document.createElement('option');
-                option.value = tz.tz;
-                option.textContent = `${tz.flag} ${tz.name} (${tz.tz})`;
-                select.appendChild(option);
+                const region = tz.tz.split('/')[0];
+                if (!regions[region]) {
+                    regions[region] = [];
+                }
+                regions[region].push(tz);
+            });
+
+            Object.keys(regions).sort().forEach(region => {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = region;
+                regions[region].forEach(tz => {
+                    const option = document.createElement('option');
+                    option.value = tz.tz;
+                    option.textContent = `${tz.flag} ${tz.name}, ${tz.country}`;
+                    optgroup.appendChild(option);
+                });
+                select.appendChild(optgroup);
+            });
+        }
+
+        function updateTimezoneSelect() {
+            const select = document.getElementById('timezoneSelect');
+            select.innerHTML = '<option value="">Select a timezone...</option>';
+            
+            const regions = {};
+            filteredTimezones.forEach(tz => {
+                const region = tz.tz.split('/')[0];
+                if (!regions[region]) {
+                    regions[region] = [];
+                }
+                regions[region].push(tz);
+            });
+
+            Object.keys(regions).sort().forEach(region => {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = region;
+                regions[region].forEach(tz => {
+                    const option = document.createElement('option');
+                    option.value = tz.tz;
+                    option.textContent = `${tz.flag} ${tz.name}, ${tz.country}`;
+                    optgroup.appendChild(option);
+                });
+                select.appendChild(optgroup);
             });
         }
 
@@ -386,9 +784,16 @@
             initializeClocks();
         });
 
-        // Allow adding timezone with Enter key
+        // Search functionality
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('timezoneSelect').addEventListener('keypress', (e) => {
+            const searchBox = document.getElementById('searchBox');
+            const timezoneSelect = document.getElementById('timezoneSelect');
+            
+            searchBox.addEventListener('input', (e) => {
+                searchTimezones(e.target.value);
+            });
+
+            timezoneSelect.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     addTimezone();
                 }
